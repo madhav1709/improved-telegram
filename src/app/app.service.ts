@@ -12,6 +12,14 @@ export class AppService {
   //private authToken = 'YWRkYWMwM2ZiOWQ5MTg1N2YzMDNkZDZjYzgyOGU1YjliZTg1MTkzMDMwZWUyOWMxZWVlZjI0NmFkMGFlMmFmZWM2ZGU4OWQxZWUyNTc2YWU3YjNlMjMyMDZjYzljOTkxYjI1YzQwZWI0NGNmMTFlM2E5YTY1YzU5YWMxZjU3MGIxMA==';
   constructor(public http:HttpClient) { }
 
+  public getUserInfoFromLocalStorage = () => {
+    return JSON.parse(localStorage.getItem("userInfo"));
+  }
+
+  public setUserInfoInLocalStorage = (data) =>{
+    localStorage.setItem('userInfo',JSON.stringify(data));
+  }
+
   public signupFunction(data): Observable<any> {
     const params = new HttpParams()
       .set('firstName', data.firstName)
@@ -25,7 +33,7 @@ export class AppService {
   
   
     }
-    public loginFunction(data): Observable<any> {
+    public signinFunction(data): Observable<any> {
       const params = new HttpParams()
         .set('email', data.email)
         .set('password', data.password);
